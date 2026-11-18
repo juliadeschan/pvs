@@ -303,7 +303,7 @@ void graph_create_ring(Graph* g, int n) {
     graph_insert_edge(g->nodes[n], g->nodes[0]);
 }
 
-void graph_create_torus(Graph* g, int height, int width, int depth){
+void graph_create_3d_torus(Graph* g, int height, int width, int depth){
     graph_create(&g);
     
     char label[256];
@@ -331,7 +331,22 @@ void graph_create_torus(Graph* g, int height, int width, int depth){
             }
         }
     }
-    
+}
+
+void graph_create_complete_graph(Graph* g, int n) {
+    graph_create(&g);
+    char label[256];
+
+    for (int i = 0; i < n; i++) {
+        sprintf(label, "%i", i);
+        graph_insert_node(g, label);
+    }
+
+    for (int node = 0; node < n; node++) {
+        for (int node2 = node+1; node < n; node2++) {
+            graph_insert_edge(g->nodes[node], g->nodes[node2]);
+        }
+    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
