@@ -289,6 +289,25 @@ void graph_find_shortest_path(Node* from, Node* to, Path** p)
     free(nodes_added);
 }
 
+void graph_create_ring(Graph* g, int n) {
+    graph_create(&g);
+    graph_insert_node(g, "0");
+
+    char label[256];
+    for (int i = 1; i < n; i++) {
+        sprintf(label, "%i", i);
+        graph_insert_node(g, label);
+        graph_insert_edge(g->nodes[i-1], g->nodes[i]);
+    }
+
+    graph_insert_edge(g->nodes[n], g->nodes[0]);
+}
+
+void graph_create_torus(Graph* g, int h, int w, int d){
+    graph_create(&g);
+    
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // main function demonstrating the use of the graph functions
 /////////////////////////////////////////////////////////////////////////////////
