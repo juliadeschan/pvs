@@ -349,6 +349,32 @@ void graph_create_complete_graph(Graph* g, int n) {
     }
 }
 
+int graph_compute_degree(Graph* g) {
+    int degree = 0;
+
+    for (int i = 0; i < g->node_count; i++) {
+        if (g->nodes[i]->adjacent_nodes_count > degree) {
+            degree = g->nodes[i]->adjacent_nodes_count;
+        }
+    }
+    return degree;
+}
+
+int graph_compute_diamater(Graph* g) {
+    int diameter = 0;
+
+    for (int i = 0; i < g->node_count; i++) {
+        for (int j = i + 1; j < g->node_count; j++) {
+            Path* p;
+            graph_find_shortest_path(g->nodes[i], g->nodes[j], &p);
+            diameter = diameter < p->node_count - 1 ? p->node_count - 1: diameter;
+            path_delete(p);
+        }
+    }
+
+    return diameter;
+}
+
 /////////////////////////////////////////////////////////////////////////////////
 // main function demonstrating the use of the graph functions
 /////////////////////////////////////////////////////////////////////////////////
