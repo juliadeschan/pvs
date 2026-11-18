@@ -303,8 +303,34 @@ void graph_create_ring(Graph* g, int n) {
     graph_insert_edge(g->nodes[n], g->nodes[0]);
 }
 
-void graph_create_torus(Graph* g, int h, int w, int d){
+void graph_create_torus(Graph* g, int height, int width, int depth){
     graph_create(&g);
+    
+    char label[256];
+
+    for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+            for (int d = 0; d < depth; d++) {
+                sprintf(label, "(%i,%i,%i)", h, w, d);
+                graph_insert_node(g, label);
+            }
+        }
+    }
+
+    for (int h = 0; h < height; h++) {
+        for (int w = 0; w < width; w++) {
+            for (int d = 0; d < depth; d++) {
+                int idx =       d +                 w * depth +                 h * width * depth;
+                int idx_back = (d + 1) % depth +    w * depth +                 h * width * depth;
+                int idx_right = d +                (w + 1) % width * depth +    h * width * depth;
+                int idx_down =  d +                 w * depth +                (h + 1) % height * width * depth; 
+
+                graph_insert_edge(g->nodes[idx], g->nodes[idx_back]);
+                graph_insert_edge(g->nodes[idx], g->nodes[idx_right]);
+                graph_insert_edge(g->nodes[idx], g->nodes[idx_down]);
+            }
+        }
+    }
     
 }
 
