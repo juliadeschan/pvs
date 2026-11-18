@@ -1,0 +1,33 @@
+You are tasked to design a static network consisting of 32 nodes for a small enterprise. Ideally, this network should be fast, resilient and inexpensive. For this task you can choose from the following networks:
+• Linear array
+• Hypercube
+• Complete graph
+Which of those networks fulfills the given requirements best and which fulfills those requirements worst? Briefly reason your decision by stating to which extend each of those networks fulfills those requirements.
+
+Linear array: 
+- Node connectivity = 1
+- Edge connectivity = 1
+-> not resilient
+- #Edges = #Nodes - 1 = 31
+-> cheap
+- Bisection width: 1
+-> not fast
+
+Hypercube:
+- #Dimensions = log_2(32) = 5
+- Node connectivity = #Dimensions = 5
+- Edge connectivity = #Dimensions = 5
+-> resilient
+- #Edges = (#Nodes * #Dimensions)/2 = 80 
+-> mediocrely expensive
+- Bisection width = #Nodes / 2 = 16
+-> fast
+
+Complete Graph:
+- Node connectivity = n/a
+- Edge connectivity = 31
+-> very resilient
+- #Edges = (#Nodes * (#Nodes-1))/2 = 496
+-> very expensive
+- Bisection width = (#Nodes/2)^2 = 256
+-> very fast

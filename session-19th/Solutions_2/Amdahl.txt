@@ -1,0 +1,17 @@
+Berechnen Sie mit Hilfe des Amdahlschen Gesetzes den maximalen Speedup eines Programms mit 10%
+sequentiellem und 90% parallelem Anteil auf einer Maschine mit einem modernen Mehrkernprozessor
+mit 32 Kernen. Wieso fällt auf einem solchen modernen Mehrkernprozessor der tatsächliche Speedup bei
+vielen Anwendungen deutlich geringer aus als der mit dem Amdahlschen Gesetz berechnete maximale
+Speedup?
+
+T_Par = (Frac_Seq + Frac_Par / #Cores) * T_Seq
+T_Par = (0.1 + 0.9 / 32) =  0.128 * T_Seq
+
+S = T_Seq / T_Par = 1 / 0.128 = 7.8
+
+Wieso fällt auf einem solchen modernen Mehrkernprozessor der tatsächliche Speedup bei
+vielen Anwendungen deutlich geringer aus als der mit dem Amdahlschen Gesetz berechnete maximale
+Speedup?
+
+- Geteilte Resourcen (Caches, Speicher) werden oft zum Flaschenhals.
+- Zusätzlicher Synchronisationsoverhead nicht berücksichtigt
