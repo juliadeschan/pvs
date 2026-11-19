@@ -15,24 +15,24 @@ int main(int argc, char** args){
 
     //Declare the Matrices
 
-    int* A = malloc(sizeof(int)* 100000);
-    int* B = malloc(sizeof(int)* 100000);
+    int* A = malloc(sizeof(int)* 10000000);
+    int* B = malloc(sizeof(int)* 10000000);
     
     int C = 0;
 
     if(rank == 0){
         
-        for(int i=0 ; i<100000; i++){
+        for(int i=0 ; i<10000000; i++){
             A[i] = 1; 
             B[i] = 5;
         }
     }
     
     //Anscheinend muss hier gelten : Arraylength = sendcount * size; wenn das nicht gilt dann was?
-    if (100000 % size == 0 ){
+    if (10000000 % size == 0 ){
 
         //Define the needed Arguments and Buffers
-        sendcount = 100000 / size;
+        sendcount = 10000000 / size;
 
         int* recvbufA = malloc(sizeof(int) * sendcount);
         int* recvbufB = malloc(sizeof(int) * sendcount); 
