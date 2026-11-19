@@ -1,0 +1,2 @@
+ - optimieren des MPI codes in session-19th/helena/dot_product_helena.c 
+ - implementieren eines globalen broadcast über N MPI-Ränge die in einem statischen Ring arrangiert sind (nicht mittels MPI_BCast oder MPI_Reduce)
