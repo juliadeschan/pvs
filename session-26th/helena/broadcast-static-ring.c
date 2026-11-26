@@ -21,20 +21,13 @@ int main(int argv, char** args){
         MPI_Send(msg, 30, MPI_CHAR, 1, tag, MPI_COMM_WORLD);
     }
 
-    MPI_Recv(msg, 30, MPI_CHAR, (rank - 1), tag, MPI_COMM_WORLD, &status);
+    MPI_Recv(msg, 30, MPI_CHAR, (rank - 1+ size)%size, tag, MPI_COMM_WORLD, &status);
 
     printf("%s Process %d \n", msg, rank);
 
 
-    if(rank == (size - 1)){
+    MPI_Send(msg, 30, MPI_CHAR, (rank + 1)%size, tag, MPI_COMM_WORLD);
 
-        MPI_Send(msg, 30, MPI_CHAR, 0, tag, MPI_COMM_WORLD);
-
-    }else{
-
-        MPI_Send(msg, 30, MPI_CHAR, (rank + 1), tag, MPI_COMM_WORLD);
-
-    }
 
     free(msg);
 
